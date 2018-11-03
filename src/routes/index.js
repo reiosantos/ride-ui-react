@@ -1,7 +1,7 @@
 import React from 'react';
 import { HashRouter as Router, Route, Switch } from 'react-router-dom';
-import App from './app/app';
-import { PrivateRoute } from './ProtectedRoute/privateRoute';
+import App from '../components/app/app';
+import { PrivateRoute } from '../privateRoute';
 
 const Routes = () => (
 	<Router>
