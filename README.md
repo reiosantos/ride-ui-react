@@ -11,8 +11,7 @@ ore and earning more.
 
 ## Build status, and test coverage
 
-Build status of continuous integration i.e. travis, -
-Test coverage of code climate and coveralls -
+[![Build Status](https://travis-ci.org/reiosantos/ride-ui-react.svg?branch=develop)](https://travis-ci.org/reiosantos/ride-ui-react) [![Coverage Status](https://coveralls.io/repos/github/reiosantos/ride-ui-react/badge.svg?branch=develop)](https://coveralls.io/github/reiosantos/ride-ui-react?branch=develop)
 
 ***Features***
 
