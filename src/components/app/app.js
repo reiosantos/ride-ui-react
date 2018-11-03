@@ -1,9 +1,9 @@
 import React, { Fragment } from 'react';
-import ButtonAppBar from './appNavBar';
+import NavBar from '../navBar';
 
 const App = () => (
 	<Fragment>
-		<ButtonAppBar />
+		<NavBar />
 	</Fragment>
 );
 
