@@ -1,24 +1,17 @@
 import { Redirect, Route } from 'react-router-dom';
 import jwtDecode from 'jwt-decode';
 import React from 'react';
-import { logoutActionCreator } from '../actions/auth';
-import { AUTH_TOKEN, PROPERTY_USER } from '../constants';
+import { AUTH_TOKEN } from '../constants';
 
 export const Authenticate = {
 	isAuthenticated() {
 		try {
 			let token = localStorage.getItem(AUTH_TOKEN);
-			const user = JSON.parse(localStorage.getItem(PROPERTY_USER));
 			token = jwtDecode(token);
-			return !!token && !!token.identity && !!user;
+			return !!token && !!token.id;
 		} catch (e) {
-			localStorage.clear();
 			return false;
 		}
-	},
-	logout(dispatch) {
-		localStorage.clear();
-		dispatch(logoutActionCreator());
 	}
 };
 
