@@ -6,6 +6,8 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import PropTypes from 'prop-types';
 import React from 'react';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 const styles = {
 	root: {
@@ -20,39 +22,39 @@ const styles = {
 	}
 };
 
-const NavBar = (props) => {
-	const { classes } = props;
-	return (
-		<div className={classes.root}>
-			<AppBar position="static">
-				<Toolbar>
-					<IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
-						<i className="fa fa-car fa-2x" />
-					</IconButton>
-					<Typography variant="h4" color="inherit" className={classes.grow}>
-						<span>Ride my way</span>
-					</Typography>
-					<Button color="inherit">
-						<i className="fa fa-home" />
-						<span>Home</span>
-					</Button>
-					<Button color="inherit">
-						<i className="fa fa-info" />
-						<span>About</span>
-					</Button>
-					<Button color="inherit">
-						<i className="fa fa-sign-out-alt " />
-						<span>reiosantos</span>
-					</Button>
-					<IconButton className={classes.menuButton} color="inherit" aria-label="Menu" />
-				</Toolbar>
-			</AppBar>
-		</div>
-	);
-};
+const NavBar = ({ classes, user }) => (
+	<div className={classes.root}>
+		<AppBar position="static">
+			<Toolbar>
+				<IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
+					<i className="fa fa-car fa-2x" />
+				</IconButton>
+				<Typography variant="h4" color="inherit" className={classes.grow}>
+					<span>Ride my way</span>
+				</Typography>
+				<Button color="inherit" component={Link} to="/" replace>
+					<i className="fa fa-home" />
+					<span>Home</span>
+				</Button>
+				<Button color="inherit" component={Link} to="/about" replace>
+					<i className="fa fa-info" />
+					<span>About</span>
+				</Button>
+				<Button color="inherit" component={Link} to="/logout" replace>
+					<i className="fa fa-sign-out-alt " />
+					<span>{user.username}</span>
+				</Button>
+				<IconButton className={classes.menuButton} color="inherit" aria-label="Menu" />
+			</Toolbar>
+		</AppBar>
+	</div>
+);
 
 NavBar.propTypes = {
-	classes: PropTypes.shape().isRequired
+	classes: PropTypes.shape().isRequired,
+	user: PropTypes.shape().isRequired
 };
 
-export default withStyles(styles)(NavBar);
+const mapStateToProps = state => ({ ...state, user: state.authReducer.user });
+
+export default connect(mapStateToProps)(withStyles(styles)(NavBar));
