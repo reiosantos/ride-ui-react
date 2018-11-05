@@ -5,7 +5,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
-import CssBaseline from '@material-ui/core/CssBaseline';
 import FormControl from '@material-ui/core/FormControl';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -59,55 +58,52 @@ const LogInForm = ({
 	classes, onChange, onSubmit, showPassword, password, handleClickShowPassword,
 	errors, username, formHasError
 }) => (
-	<React.Fragment>
-		<CssBaseline />
-		<main className={classes.layout}>
-			<Paper className={classes.paper}>
-				<Avatar className={classes.avatar}><LockIcon /></Avatar>
-				<Typography component="h1" variant="h5">Log-in</Typography>
+	<div className={classes.layout}>
+		<Paper className={classes.paper}>
+			<Avatar className={classes.avatar}><LockIcon /></Avatar>
+			<Typography component="h1" variant="h5">Log-in</Typography>
 
-				<form className={classes.form} onSubmit={onSubmit}>
-					<FormControl margin="normal" required fullWidth error={!!errors.username}>
-						<InputLabel htmlFor="username">Username or Phone Number</InputLabel>
-						<Input value={username} onChange={onChange('username')} id="username" name="username" autoComplete="username" autoFocus />
-						<FormHelperText error={!!errors.username}>{errors.username}</FormHelperText>
-					</FormControl>
+			<form className={classes.form} onSubmit={onSubmit}>
+				<FormControl margin="normal" required fullWidth error={!!errors.username}>
+					<InputLabel htmlFor="username">Username or Phone Number</InputLabel>
+					<Input value={username} onChange={onChange('username')} id="username" name="username" autoComplete="username" autoFocus />
+					<FormHelperText error={!!errors.username}>{errors.username}</FormHelperText>
+				</FormControl>
 
-					<FormControl className={classes.textField} margin="normal" fullWidth>
-						<InputLabel htmlFor="adornment-password">Password</InputLabel>
-						<Input
-							id="adornment-password"
-							type={showPassword ? 'text' : 'password'}
-							value={password}
-							onChange={onChange('password')}
-							endAdornment={(
-								<InputAdornment position="end">
-									<IconButton
-										color="primary"
-										aria-label="Toggle password visibility"
-										onClick={handleClickShowPassword}
-									>
-										{showPassword ? <VisibilityOff /> : <Visibility />}
-									</IconButton>
-								</InputAdornment>
-							)}
-						/>
-					</FormControl>
+				<FormControl className={classes.textField} margin="normal" fullWidth>
+					<InputLabel htmlFor="adornment-password">Password</InputLabel>
+					<Input
+						id="adornment-password"
+						type={showPassword ? 'text' : 'password'}
+						value={password}
+						onChange={onChange('password')}
+						endAdornment={(
+							<InputAdornment position="end">
+								<IconButton
+									color="primary"
+									aria-label="Toggle password visibility"
+									onClick={handleClickShowPassword}
+								>
+									{showPassword ? <VisibilityOff /> : <Visibility />}
+								</IconButton>
+							</InputAdornment>
+						)}
+					/>
+				</FormControl>
 
-					<Button disabled={formHasError()} type="submit" fullWidth variant="contained" color="primary" className={classes.submit}>
-						<span>
-							<i className="fa fa-sign-in-alt" />
-							{' Login in'}
-						</span>
-					</Button>
-				</form>
-
-				<Button className={classes.typography} component={Link} to="/signup" replace>
-					<Typography>Do not have an account? Sign-up.</Typography>
+				<Button disabled={formHasError()} type="submit" fullWidth variant="contained" color="primary" className={classes.submit}>
+					<span>
+						<i className="fa fa-sign-in-alt" />
+						{' Login in'}
+					</span>
 				</Button>
-			</Paper>
-		</main>
-	</React.Fragment>
+			</form>
+
+			<Button className={classes.typography} component={Link} to="/signup" replace>
+				<Typography>Do not have an account? Sign-up.</Typography>
+			</Button>
+		</Paper>
+	</div>
 );
 
 LogInForm.propTypes = {
