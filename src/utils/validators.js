@@ -1,3 +1,5 @@
+import moment from 'moment';
+import { validateDate, validateTime } from './dateTimeValidators';
 
 export const validateUsername = username => (!!username && username.length > 2
 	? ''
@@ -11,6 +13,13 @@ export const validatePhoneNumber = phone => (phone.match(/\d{10,13}/)
 	? ''
 	: 'Allowed format is (07********) with at-least 10 but not more that 13 digits');
 
-export const validateAmount = cost => (cost.match(/^[.0-9]+$/)
+export const validateAmount = cost => (cost.match(/^\d+$/)
 	? ''
-	: `This value is not a valid amount : '${cost}'`);
+	: `This value '${cost}' is not a valid amount, example: 12000'`);
+
+export const validateDateTime = (dateTimeString) => {
+	const dateTime = moment(new Date(dateTimeString)).format('YYYY-MM-DD HH:mm:ss');
+	const dateString = dateTime.split(' ')[0];
+	const timeString = dateTime.split(' ')[1];
+	return validateDate(dateString) || validateTime(timeString);
+};

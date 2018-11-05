@@ -14,7 +14,7 @@ export const addToken = () => {
 	const TOKEN = localStorage.getItem(AUTH_TOKEN);
 
 	if (TOKEN !== null) {
-		axios.defaults.headers.common.Authorization = `Token ${TOKEN}`;
+		axios.defaults.headers.common.Authorization = `JWT ${TOKEN}`;
 	}
 };
 

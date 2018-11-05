@@ -10,7 +10,7 @@ let wrapper;
 const mockStore = configureStore([thunk]);
 let store;
 
-describe('Login Container', () => {
+describe('Signup Container', () => {
 
 	beforeEach(() => {
 		store = mockStore({
@@ -21,13 +21,13 @@ describe('Login Container', () => {
 		wrapper = shallow(<SignUpTest dispatch={jest.fn} history={{ push: jest.fn }} />);
 	});
 
-	it('renders Login form without crashing', () => {
+	it('renders Signup form without crashing', () => {
 		expect(wrapper).toHaveLength(1);
 		wrapper.setProps({ auth: { error: '', success: 'yes' }, history: { push: jest.fn } });
 		wrapper.setProps({ auth: { error: 'no', success: '' }, history: { push: jest.fn } });
 	});
 
-	it('renders Login form without login status messages', () => {
+	it('renders Signup form without login status messages', () => {
 		wrapper.setProps({ auth: { error: '', success: '' }, history: { push: jest.fn } });
 	});
 

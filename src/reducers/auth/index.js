@@ -3,7 +3,7 @@ import ACTION_TYPE from '../../actions';
 import { PROPERTY_USER } from '../../constants';
 
 const initialState = {
-	user: JSON.parse(localStorage.getItem(PROPERTY_USER)),
+	user: JSON.parse(localStorage.getItem(PROPERTY_USER)) || {},
 	error: '',
 	success: ''
 };
@@ -11,12 +11,22 @@ const initialState = {
 const authReducer = (state = initialState, action) => {
 
 	const { user, error_message, success_message } = action.payload || {};
+	const {
+		contact, full_name, registration_date, user_type, username
+	} = user || initialState.user;
+	const userObject = {
+		phoneNumber: contact,
+		fullNames: full_name,
+		registrationDate: registration_date,
+		userType: user_type,
+		username
+	};
 
 	switch (action.type) {
 		case ACTION_TYPE.SIGN_UP:
 			return {
 				...state,
-				user: user || initialState.user,
+				user: userObject,
 				error: error_message,
 				success: success_message
 			};
@@ -25,7 +35,7 @@ const authReducer = (state = initialState, action) => {
 			return { ...initialState };
 
 		default:
-			return state;
+			return { ...state, user: userObject };
 	}
 };
 

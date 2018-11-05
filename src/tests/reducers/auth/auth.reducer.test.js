@@ -4,13 +4,23 @@ import authReducer from '../../../reducers/auth';
 
 describe('Auth reduces', () => {
 
-	it('should test signup and logout article reducer', () => {
-		const expected = { user: null, error: undefined, success: undefined };
-		const expectedLogout = { user: null, error: '', success: '' };
+	it('should test signup and logout reducer', () => {
+		const expected = {
+			error: undefined,
+			success: undefined,
+			user: {
+				fullNames: undefined,
+				phoneNumber: undefined,
+				registrationDate: undefined,
+				userType: undefined,
+				username: undefined
+			} 
+		};
+		const expectedLogout = { user: {}, error: '', success: '' };
 
-		const actionSignup = { type: ACTION_TYPE.SIGN_UP, payload: {} };
+		const actionSignup = { type: ACTION_TYPE.SIGN_UP, payload: { user: {} } };
 
-		const actionLogout = { type: ACTION_TYPE.LOG_OUT };
+		const actionLogout = { type: ACTION_TYPE.LOG_OUT, payload: { user: {} } };
 
 		expect(authReducer(undefined, actionSignup)).toEqual(expected);
 		expect(authReducer(undefined, actionLogout)).toEqual(expectedLogout);
