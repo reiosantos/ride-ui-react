@@ -2,7 +2,6 @@
 export const AUTH_TOKEN = 'auth_token';
 export const PROPERTY_USER = 'user';
 export const USER_TYPE_DRIVER = 'driver';
-export const USER_TYPE_PASSENGER = 'passenger';
 
 export const BASE_URL = process.env.REACT_APP_RIDE_API_URL;
 

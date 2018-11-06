@@ -5,7 +5,10 @@ import { addToken } from '../../utils';
 
 export const addNewRideActionCreator = data => ({
 	type: ACTION_TYPE.ADD_NEW_RIDE,
-	payload: data
+	payload: {
+		...data,
+		rides: data.data || []
+	}
 });
 
 export const rideErrorsActionCreator = data => ({

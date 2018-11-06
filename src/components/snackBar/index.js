@@ -1,16 +1,16 @@
+import React from 'react';
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
 import { amber, green } from '@material-ui/core/colors';
 import IconButton from '@material-ui/core/IconButton/IconButton';
 import Snackbar from '@material-ui/core/Snackbar/Snackbar';
 import SnackbarContent from '@material-ui/core/SnackbarContent/SnackbarContent';
 import withStyles from '@material-ui/core/styles/withStyles';
-import * as PropTypes from 'prop-types';
-import React from 'react';
-import classNames from 'classnames';
-import WarningIcon from '@material-ui/icons/Warning';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
+import CloseIcon from '@material-ui/icons/Close';
 import ErrorIcon from '@material-ui/icons/Error';
 import InfoIcon from '@material-ui/icons/Info';
-import CloseIcon from '@material-ui/icons/Close';
+import WarningIcon from '@material-ui/icons/Warning';
 
 const styles1 = theme => ({
 	success: {

@@ -1,8 +1,8 @@
-import { Redirect, Route } from 'react-router-dom';
-import jwtDecode from 'jwt-decode';
 import React from 'react';
-import { logoutActionCreator } from '../actions/auth';
-import { AUTH_TOKEN, PROPERTY_USER } from '../constants';
+import jwtDecode from 'jwt-decode';
+import { Redirect, Route } from 'react-router-dom';
+import { logoutActionCreator } from '../../actions/auth/index';
+import { AUTH_TOKEN, PROPERTY_USER } from '../../constants/index';
 
 export const Authenticate = {
 	isAuthenticated() {

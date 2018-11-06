@@ -5,11 +5,7 @@ import DriverPage from '../../components/driver/driverPage';
 import CircularIntegration from '../../components/progress';
 import CustomizedSnackBar from '../../components/snackBar';
 import { capitalizeWord } from '../../utils';
-import {
-	validateAmount,
-	validateDateTime,
-	validateUsername
-} from '../../utils/validators';
+import { validateAmount, validateDateTime, validateUsername } from '../../utils/validators';
 
 class Driver extends React.Component {
 

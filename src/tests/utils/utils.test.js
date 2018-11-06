@@ -1,6 +1,7 @@
 import { capitalizeWord, formatDate, sleep } from '../../utils';
 import {
-	validateAmount, validateDateTime,
+	validateAmount,
+	validateDateTime,
 	validatePassword,
 	validatePhoneNumber,
 	validateUsername

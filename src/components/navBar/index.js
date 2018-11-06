@@ -1,13 +1,13 @@
+import React from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { withStyles } from '@material-ui/core';
 import AppBar from '@material-ui/core/AppBar';
 import Button from '@material-ui/core/Button/Button';
 import IconButton from '@material-ui/core/IconButton';
-import { withStyles } from '@material-ui/core';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import PropTypes from 'prop-types';
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
 
 const styles = {
 	root: {
@@ -18,7 +18,7 @@ const styles = {
 	},
 	menuButton: {
 		marginLeft: -12,
-		marginRight: 20
+		marginRight: 0
 	}
 };
 

@@ -1,3 +1,4 @@
+// noinspection ES6CheckImport
 import { EnhancerOptions as undefined } from 'redux-devtools-extension';
 import ACTION_TYPE from '../../../actions';
 import authReducer from '../../../reducers/auth';

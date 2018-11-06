@@ -16,6 +16,7 @@
 		"react-redux": "^5.1.0",
 		"react-router-dom": "^4.3.1",
 		"react-scripts": "2.1.1",
+		"react-swipeable-views": "^0.13.0",
 		"redux": "^4.0.1",
 		"redux-thunk": "^2.3.0"
 	},
@@ -41,7 +42,7 @@
 			"src/**/*.{js,jsx}",
 			"!<rootDir>/node_modules/",
 			"!<rootDir>/src/themes/*",
-			"!<rootDir>/src/privateRoute/*",
+			"!<rootDir>/src/components/privateRoute/*",
 			"!<rootDir>/src/index.js",
 			"!<rootDir>/src/utils/dateTimeValidators.js"
 		],
