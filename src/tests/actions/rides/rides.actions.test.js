@@ -1,6 +1,6 @@
-import thunk from 'redux-thunk';
-import configureStore from 'redux-mock-store';
 import moxios from 'moxios';
+import configureStore from 'redux-mock-store';
+import thunk from 'redux-thunk';
 import { ridesAction } from '../../../actions/rides';
 import { API } from '../../../constants';
 
@@ -30,7 +30,7 @@ describe('Rides Actions', () => {
 		});
 		const userData = {};
 
-		const expectedActions = [{ payload: { success_message: 'message' }, type: 'ADD_NEW_RIDE' }, { type: 'VIEW_ALL_RIDES' }];
+		const expectedActions = [{ payload: { rides: [], success_message: 'message' }, type: 'ADD_NEW_RIDE' }, { type: 'VIEW_ALL_RIDES' }];
 
 		store.dispatch(ridesAction(userData, 'post')).then(() => {
 			expect(store.getActions()).toEqual(expectedActions);

@@ -1,5 +1,5 @@
-import * as PropTypes from 'prop-types';
 import React, { Fragment } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { USER_TYPE_DRIVER } from '../../constants';
 import Driver from '../../containers/driver';

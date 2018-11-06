@@ -1,10 +1,10 @@
 import React from 'react';
 import { HashRouter as Router, Route, Switch } from 'react-router-dom';
 import App from '../components/app/app';
-import Logout from '../containers/auth/logout';
+import { PrivateRoute } from '../components/privateRoute';
 import LogIn from '../containers/auth/login';
+import Logout from '../containers/auth/logout';
 import SignUp from '../containers/auth/signup';
-import { PrivateRoute } from '../privateRoute';
 
 const Routes = () => (
 	<Router>

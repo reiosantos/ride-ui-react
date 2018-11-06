@@ -1,6 +1,6 @@
-import thunk from 'redux-thunk';
-import configureStore from 'redux-mock-store';
 import moxios from 'moxios';
+import configureStore from 'redux-mock-store';
+import thunk from 'redux-thunk';
 import ACTION_TYPE from '../../../actions';
 import { authAction, logoutActionCreator } from '../../../actions/auth';
 import { API } from '../../../constants';

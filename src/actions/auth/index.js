@@ -1,4 +1,3 @@
-/* eslint-disable camelcase */
 import axios from 'axios';
 import ACTION_TYPE from '..';
 import { AUTH_TOKEN, PROPERTY_USER } from '../../constants';
@@ -30,6 +29,7 @@ export const authAction = (requestData, URL) => (dispatch) => {
 	return axios.post(URL, { ...userData })
 		.then(response => response.data)
 		.then((response) => {
+			/* eslint-disable camelcase */
 			const { auth_token, user } = response;
 
 			localStorage.setItem(AUTH_TOKEN, auth_token);

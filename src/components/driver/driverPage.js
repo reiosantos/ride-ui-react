@@ -1,9 +1,11 @@
-import Typography from '@material-ui/core/Typography/Typography';
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
+import Paper from '@material-ui/core/Paper/Paper';
+import { withStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography/Typography';
 import AddRideForm from '../rides/addRideForm';
+import TabbedPage from '../tabs/tabbedPage';
 
 const styles = theme => ({
 	root: {
@@ -38,7 +40,11 @@ const DriverPage = (
 						{...other}
 					/>
 				</Grid>
-				<Grid item xs={12} sm={12} md={8} lg={8} />
+				<Grid item xs={12} sm={12} md={8} lg={8}>
+					<Paper className={classes.paper}>
+						<TabbedPage />
+					</Paper>
+				</Grid>
 			</Grid>
 		</div>
 	</Fragment>

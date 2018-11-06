@@ -4,7 +4,9 @@ import { Provider } from 'react-redux';
 import { MemoryRouter } from 'react-router-dom';
 import configureStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
+import TabbedPage, { TabbedPageTest } from '../../../components/tabs/tabbedPage';
 import Driver, { DriverTest } from '../../../containers/driver';
+import { ViewAllRidesTabTest } from '../../../containers/driver/viewAllRidesTab';
 
 let wrapper;
 const mockStore = configureStore([thunk]);
@@ -15,7 +17,12 @@ describe('Driver Container', () => {
 	beforeEach(() => {
 		store = mockStore({
 			ridesReducer: {
-				newRide: {}
+				newRide: {},
+				rides: [],
+				summary: {
+					ridesGiven: 0,
+					ridesTaken: 0
+				}
 			}
 		});
 		wrapper = shallow(<DriverTest dispatch={jest.fn} />);
@@ -50,6 +57,14 @@ describe('Driver Container', () => {
 	});
 
 	it('should test onChange', () => {
+		wrapper = shallow(<ViewAllRidesTabTest
+			rows={[]}
+			dispatch={jest.fn}
+		/>);
+
+		wrapper.setProps({});
+		wrapper.instance().handleChangePage({}, 2);
+		wrapper.instance().handleChangeRowsPerPage({ target: { value: '' } });
 		expect(
 			mount(
 				<MemoryRouter>
@@ -59,5 +74,14 @@ describe('Driver Container', () => {
 				</MemoryRouter>
 			)
 		).toHaveLength(1);
+	});
+
+	it('should test tabbed pages', () => {
+
+		wrapper = shallow(<TabbedPageTest classes={{}} theme={{}} />);
+		wrapper.instance().handleChange({}, 3);
+		wrapper.instance().handleChangeIndex(3);
+		wrapper = shallow(<TabbedPageTest classes={{}} theme={{ direction: 'rtl' }} />);
+
 	});
 });
