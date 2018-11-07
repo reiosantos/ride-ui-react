@@ -11,27 +11,7 @@ import Paper from '@material-ui/core/Paper';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Edit from '@material-ui/icons/Edit';
-
-const styles = theme => ({
-	root: {
-		flexGrow: 1
-	},
-	paper: {
-		display: 'flex',
-		flexDirection: 'column',
-		alignItems: 'center',
-		padding: `${theme.spacing.unit * 2}px ${theme.spacing.unit * 3}px ${theme.spacing.unit * 3}px`
-	},
-	avatar: {
-		margin: theme.spacing.unit
-	},
-	submit: {
-		marginTop: theme.spacing.unit * 3
-	},
-	form: {
-		width: '100%'
-	}
-});
+import addRideFormStyles from '../../static/styles/addRideFormStyles';
 
 const AddRideForm = (
 	{
@@ -123,4 +103,4 @@ AddRideForm.defaultProps = {
 	errors: {}
 };
 
-export default withStyles(styles)(AddRideForm);
+export default withStyles(addRideFormStyles)(AddRideForm);

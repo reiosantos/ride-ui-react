@@ -1,7 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import { amber, green } from '@material-ui/core/colors';
 import IconButton from '@material-ui/core/IconButton/IconButton';
 import Snackbar from '@material-ui/core/Snackbar/Snackbar';
 import SnackbarContent from '@material-ui/core/SnackbarContent/SnackbarContent';
@@ -11,32 +10,7 @@ import CloseIcon from '@material-ui/icons/Close';
 import ErrorIcon from '@material-ui/icons/Error';
 import InfoIcon from '@material-ui/icons/Info';
 import WarningIcon from '@material-ui/icons/Warning';
-
-const styles1 = theme => ({
-	success: {
-		backgroundColor: green[600]
-	},
-	error: {
-		backgroundColor: theme.palette.error.dark
-	},
-	info: {
-		backgroundColor: theme.palette.primary.dark
-	},
-	warning: {
-		backgroundColor: amber[700]
-	},
-	icon: {
-		fontSize: 20
-	},
-	iconVariant: {
-		opacity: 0.9,
-		marginRight: theme.spacing.unit
-	},
-	message: {
-		display: 'flex',
-		alignItems: 'center'
-	}
-});
+import snackBarStyles from '../../static/styles/snackBarStyles';
 
 const variantIcon = {
 	success: CheckCircleIcon,
@@ -93,4 +67,4 @@ CustomizedSnackBar.propTypes = {
 	variant: PropTypes.oneOf(['success', 'warning', 'error', 'info']).isRequired
 };
 
-export default withStyles(styles1)(CustomizedSnackBar);
+export default withStyles(snackBarStyles)(CustomizedSnackBar);

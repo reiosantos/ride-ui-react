@@ -4,21 +4,9 @@ import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper/Paper';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography/Typography';
+import driverPageStyles from '../../static/styles/driverPageStyles';
 import AddRideForm from '../rides/addRideForm';
 import TabbedPage from '../tabs/tabbedPage';
-
-const styles = theme => ({
-	root: {
-		flexGrow: 1,
-		margin: theme.spacing.unit * 2,
-		marginTop: theme.spacing.unit * 4
-	},
-	paper: {
-		padding: theme.spacing.unit * 2,
-		textAlign: 'center',
-		color: theme.palette.text.secondary
-	}
-});
 
 const DriverPage = (
 	{
@@ -70,4 +58,4 @@ DriverPage.defaultProps = {
 	tripDepartTime: ''
 };
 
-export default withStyles(styles)(DriverPage);
+export default withStyles(driverPageStyles)(DriverPage);

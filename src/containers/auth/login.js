@@ -35,9 +35,8 @@ class LogIn extends React.Component {
 	}
 
 	componentWillReceiveProps(nextProps, nextState) {
-		const { auth, history } = nextProps;
+		const { auth } = nextProps;
 		const { error, success } = auth;
-		const { push } = history;
 
 		if (error || success) {
 			this.snack.message = error || success;
@@ -50,7 +49,7 @@ class LogIn extends React.Component {
 
 		if (success) {
 			this.setState({ ...this.initialState });
-			push('/');
+			window.location.assign('/');
 		}
 	}
 

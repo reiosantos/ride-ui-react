@@ -1,61 +1,29 @@
 import ACTION_TYPE from '../../actions';
-import { formatDate } from '../../utils';
+import { categorizeRides, renameAttributes } from '../../utils/reducerUtils';
 
 const initialState = {
 	error: '',
 	success: '',
 	rides: [],
+	rideSelections: [],
+	requests: [],
 	summary: {
+		totalRequests: 0,
 		ridesTaken: 0,
 		ridesGiven: 0
 	}
 };
 
-export const deepFlatten = (array) => {
-	let result = [];
-
-	array.forEach((elem) => {
-		if (Array.isArray(elem)) {
-			result = result.concat(deepFlatten(elem));
-		} else {
-			result.push(elem);
-		}
-	});
-
-	return result;
-};
-
-export const categorizeRides = (data) => {
-	const rides = {};
-	const summary = { ridesTaken: 0, ridesGiven: data.length };
-
-	data.forEach((ride) => {
-		const dateKey = formatDate(ride.post_date);
-
-		if (!Object.prototype.hasOwnProperty.call(rides, dateKey)) {
-			rides[dateKey] = [];
-			rides[dateKey].push({ category: dateKey });
-		}
-		if (ride.status === 'taken') {
-			summary.ridesTaken += 1;
-		}
-		rides[dateKey].push({
-			...ride,
-			id: ride.departure_time + ride.post_date,
-			departureTime: formatDate(ride.departure_time),
-			tripFrom: ride.trip_from,
-			postDate: formatDate(ride.post_date),
-			rideId: ride.ride_id
-		});
-	});
-
-	return [deepFlatten(Object.keys(rides).map(key => rides[key])), summary];
-};
-
 const ridesReducer = (state = initialState, action) => {
 
-	const { error_message: error, success_message: success, rides } = action.payload || {};
-	const rideList = rides || [];
+	const {
+		error_message: error, success_message: success, rides, requests 
+	} = action.payload || {};
+	const rideList = rides || state.rides;
+	let requestList = requests || [];
+
+	requestList = Array.isArray(requestList) ? requestList
+		: [requestList];
 
 	const dataArray = categorizeRides(rideList);
 
@@ -63,16 +31,36 @@ const ridesReducer = (state = initialState, action) => {
 		error,
 		success,
 		rides: dataArray[0],
-		summary: dataArray[1]
+		rideSelections: rideList.map(ride => renameAttributes(ride)),
+		requests: requestList.map(ride => renameAttributes(ride)),
+		summary: { ...state.summary, ...dataArray[1], totalRequests: requestList.length }
 	};
 
 	switch (action.type) {
 		case ACTION_TYPE.ADD_NEW_RIDE:
-			return { ...state, ...data };
+			return {
+				...state,
+				error,
+				success,
+				rides: data.rides,
+				rideSelections: data.rideSelections,
+				summary: data.summary
+			};
 
 		case ACTION_TYPE.DELETE_RIDE:
 			return { ...state, ...data };
 
+		case ACTION_TYPE.RIDE_ERRORS:
+			return { ...state, success, error };
+
+		case ACTION_TYPE.VIEW_ALL_REQUESTS:
+			return {
+				...state,
+				error,
+				success,
+				requests: data.requests,
+				summary: { ...data.summary, totalRequests: data.summary.totalRequests } 
+			};
 		default:
 			return { ...state };
 	}
