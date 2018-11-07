@@ -12,6 +12,7 @@ describe('SignupForm component', () => {
 					handleClickShowPassword={jest.fn}
 					handleSelectChange={jest.fn}
 					showPassword
+					onSubmit={jest.fn}
 					onChange={jest.fn}
 					formHasError={() => true}
 				/>

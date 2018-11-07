@@ -101,6 +101,10 @@ describe('DriverPage component', () => {
 			rowsPerPage={3}
 			count={23}
 			classes={{}}
+			handleNextButtonClick={jest.fn}
+			handleLastPageButtonClick={jest.fn}
+			handleFirstPageButtonClick={jest.fn}
+			handleBackButtonClick={jest.fn}
 			onChangePage={jest.fn}
 			theme={{ direction: 'rtl' }}
 		/>)).toHaveLength(1);
