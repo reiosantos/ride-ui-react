@@ -5,28 +5,12 @@ import AppBar from '@material-ui/core/AppBar';
 import { withStyles } from '@material-ui/core/styles';
 import Tab from '@material-ui/core/Tab';
 import Tabs from '@material-ui/core/Tabs';
-import Typography from '@material-ui/core/Typography';
 import FolderOpen from '@material-ui/icons/FolderOpen';
 import List from '@material-ui/icons/List';
 import ViewAllRidesTab from '../../containers/driver/viewAllRidesTab';
-
-const TabContainer = ({ children, dir }) => (
-	<Typography component="div" dir={dir} style={{ padding: 8 * 3 }}>
-		{children}
-	</Typography>
-);
-
-TabContainer.propTypes = {
-	children: PropTypes.node.isRequired,
-	dir: PropTypes.string.isRequired
-};
-
-const styles = theme => ({
-	root: {
-		backgroundColor: theme.palette.background.paper,
-		width: '100%'
-	}
-});
+import ViewRequestsTab from '../../containers/driver/viewRequestsTab';
+import tabbedPageStyles from '../../static/styles/tabbedPageStyles';
+import TabContainer from './tabContainer';
 
 class TabbedPage extends React.Component {
 	state = {
@@ -67,7 +51,9 @@ class TabbedPage extends React.Component {
 						<ViewAllRidesTab />
 					</TabContainer>
 
-					<TabContainer dir={theme.direction}>Passenger Requests</TabContainer>
+					<TabContainer dir={theme.direction}>
+						<ViewRequestsTab />
+					</TabContainer>
 				</SwipeableViews>
 			</div>
 		);
@@ -81,4 +67,4 @@ TabbedPage.propTypes = {
 
 export { TabbedPage as TabbedPageTest };
 
-export default withStyles(styles, { withTheme: true })(TabbedPage);
+export default withStyles(tabbedPageStyles, { withTheme: true })(TabbedPage);

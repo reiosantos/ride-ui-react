@@ -8,19 +8,7 @@ import Button from '@material-ui/core/Button/Button';
 import IconButton from '@material-ui/core/IconButton';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-
-const styles = {
-	root: {
-		flexGrow: 1
-	},
-	grow: {
-		flexGrow: 1
-	},
-	menuButton: {
-		marginLeft: -12,
-		marginRight: 0
-	}
-};
+import navBarStyles from '../../static/styles/navbarStyles';
 
 const NavBar = ({ classes, user }) => (
 	<div className={classes.root}>
@@ -57,4 +45,4 @@ NavBar.propTypes = {
 
 const mapStateToProps = state => ({ ...state, user: state.authReducer.user });
 
-export default connect(mapStateToProps)(withStyles(styles)(NavBar));
+export default connect(mapStateToProps)(withStyles(navBarStyles)(NavBar));
