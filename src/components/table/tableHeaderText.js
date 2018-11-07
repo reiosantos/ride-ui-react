@@ -33,9 +33,13 @@ const TableHeaderText = ({
 
 TableHeaderText.propTypes = {
 	classes: PropTypes.shape().isRequired,
-	totalRequests: PropTypes.number.isRequired,
+	totalRequests: PropTypes.number,
 	ridesGiven: PropTypes.number.isRequired,
 	ridesTaken: PropTypes.number.isRequired
+};
+
+TableHeaderText.defaultProps = {
+	totalRequests: null
 };
 
 export default TableHeaderText;
