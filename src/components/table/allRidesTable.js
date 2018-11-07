@@ -1,3 +1,4 @@
+import IconButton from '@material-ui/core/IconButton/IconButton';
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import Grid from '@material-ui/core/Grid/Grid';
@@ -10,6 +11,7 @@ import TableHead from '@material-ui/core/TableHead/TableHead';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
 import Typography from '@material-ui/core/Typography/Typography';
+import DeleteIcon from '@material-ui/icons/Delete';
 import TablePaginationViewActions from './pagination/tablePaginationViewActions';
 
 const styles = theme => ({
@@ -57,24 +59,26 @@ RideRowCategory.propTypes = {
 	classes: PropTypes.shape().isRequired
 };
 
-const RideRow = ({ row, classes }) => (
+const RideRow = ({ row, classes, onClickDelete }) => (
 	<TableRow key={row.id}>
 		<TableCell>{row.tripFrom}</TableCell>
 		<TableCell>{row.destination}</TableCell>
 		<TableCell>{row.cost}</TableCell>
 		<TableCell>{row.departureTime}</TableCell>
 		<TableCell className={row.status === 'taken' ? classes.taken : ''}>{row.status}</TableCell>
+		<TableCell><IconButton onClick={onClickDelete(row.rideId)}><DeleteIcon titleAccess="delete ride" /></IconButton></TableCell>
 	</TableRow>
 );
 
 RideRow.propTypes = {
 	row: PropTypes.shape().isRequired,
-	classes: PropTypes.shape().isRequired
+	classes: PropTypes.shape().isRequired,
+	onClickDelete: PropTypes.func.isRequired
 };
 
 const AllRidesTable = (
 	{
-		classes, page, rowsPerPage, rows, handleChangePage,
+		classes, page, rowsPerPage, rows, handleChangePage, onClickDelete,
 		handleChangeRowsPerPage, ridesGiven, ridesTaken
 	}
 ) => (
@@ -98,6 +102,7 @@ const AllRidesTable = (
 					</CustomTableCell>
 					<CustomTableCell>Departure</CustomTableCell>
 					<CustomTableCell>Status</CustomTableCell>
+					<CustomTableCell />
 				</TableRow>
 			</TableHead>
 			<TableBody>
@@ -106,7 +111,7 @@ const AllRidesTable = (
 						{
 							row.category
 								? <RideRowCategory group={row.category} classes={classes} />
-								: <RideRow row={row} classes={classes} />
+								: <RideRow onClickDelete={onClickDelete} row={row} classes={classes} />
 						}
 					</Fragment>
 				))}
@@ -136,7 +141,8 @@ AllRidesTable.propTypes = {
 	ridesTaken: PropTypes.number.isRequired,
 	rows: PropTypes.arrayOf(PropTypes.shape()).isRequired,
 	handleChangePage: PropTypes.func.isRequired,
-	handleChangeRowsPerPage: PropTypes.func.isRequired
+	handleChangeRowsPerPage: PropTypes.func.isRequired,
+	onClickDelete: PropTypes.func.isRequired
 
 };
 

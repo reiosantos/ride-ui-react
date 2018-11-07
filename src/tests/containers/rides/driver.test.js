@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 import { MemoryRouter } from 'react-router-dom';
 import configureStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
-import TabbedPage, { TabbedPageTest } from '../../../components/tabs/tabbedPage';
+import { TabbedPageTest } from '../../../components/tabs/tabbedPage';
 import Driver, { DriverTest } from '../../../containers/driver';
 import { ViewAllRidesTabTest } from '../../../containers/driver/viewAllRidesTab';
 
@@ -64,6 +64,7 @@ describe('Driver Container', () => {
 
 		wrapper.setProps({});
 		wrapper.instance().handleChangePage({}, 2);
+		wrapper.instance().onClickDelete('name')({ preventDefault: jest.fn });
 		wrapper.instance().handleChangeRowsPerPage({ target: { value: '' } });
 		expect(
 			mount(

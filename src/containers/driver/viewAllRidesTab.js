@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 import { ridesAction } from '../../actions/rides';
 import CircularIntegration from '../../components/progress';
 import AllRidesTable from '../../components/table/allRidesTable';
+import { API } from '../../constants';
+import { formatUrl } from '../../utils';
 
 class ViewAllRidesTab extends React.Component {
 
@@ -43,6 +45,13 @@ class ViewAllRidesTab extends React.Component {
 		this.setState({ rowsPerPage: event.target.value });
 	};
 
+	onClickDelete = value => (event) => {
+		event.preventDefault();
+		this.setState({ loader: { loading: true, success: false } });
+		const { dispatch } = this.props;
+		dispatch(ridesAction({}, 'DELETE', formatUrl(API.DELETE_RIDE_URL, [value])));
+	};
+
 	render() {
 		const {
 			rows, rowsPerPage, page, loader, ridesGiven, ridesTaken
@@ -60,6 +69,7 @@ class ViewAllRidesTab extends React.Component {
 					rowsPerPage={rowsPerPage}
 					ridesTaken={ridesTaken}
 					ridesGiven={ridesGiven}
+					onClickDelete={this.onClickDelete}
 				/>
 			</Fragment>
 		);

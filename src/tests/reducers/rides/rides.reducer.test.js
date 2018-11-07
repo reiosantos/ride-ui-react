@@ -13,6 +13,10 @@ describe('Rides reduces', () => {
 		const actionSignup = { type: ACTION_TYPE.ADD_NEW_RIDE, payload: { user: {} } };
 
 		expect(ridesReducer(undefined, actionSignup)).toEqual(expected);
+
+		const actionDelete = { type: ACTION_TYPE.DELETE_RIDE, payload: { } };
+
+		expect(ridesReducer(undefined, actionDelete)).toEqual(expected);
 	});
 
 	it('should test exta reducer functions', () => {

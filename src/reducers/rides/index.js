@@ -44,7 +44,8 @@ export const categorizeRides = (data) => {
 			id: ride.departure_time + ride.post_date,
 			departureTime: formatDate(ride.departure_time),
 			tripFrom: ride.trip_from,
-			postDate: formatDate(ride.post_date)
+			postDate: formatDate(ride.post_date),
+			rideId: ride.ride_id
 		});
 	});
 
@@ -67,6 +68,9 @@ const ridesReducer = (state = initialState, action) => {
 
 	switch (action.type) {
 		case ACTION_TYPE.ADD_NEW_RIDE:
+			return { ...state, ...data };
+
+		case ACTION_TYPE.DELETE_RIDE:
 			return { ...state, ...data };
 
 		default:
