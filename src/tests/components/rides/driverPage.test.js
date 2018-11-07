@@ -73,6 +73,7 @@ describe('DriverPage component', () => {
 			handleChangeRowsPerPage={jest.fn}
 			handleChangePage={jest.fn}
 			page={2}
+			onClickDelete={jest.fn}
 			ridesGiven={0}
 		/>);
 	});

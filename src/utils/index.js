@@ -27,3 +27,11 @@ export const capitalizeWord = (word) => {
 };
 
 export const sleep = async ms => new Promise(resolve => setTimeout(resolve, ms));
+
+export const formatUrl = (source, params) => {
+	let url = source;
+	params.forEach((item, index) => {
+		url = url.replace(new RegExp(`\\{${index}\\}`, 'g'), params[index]);
+	});
+	return url;
+};

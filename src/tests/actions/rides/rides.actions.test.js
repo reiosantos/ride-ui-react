@@ -37,7 +37,7 @@ describe('Rides Actions', () => {
 		});
 	});
 
-	it('failed signup with incomplete data', () => {
+	it('failed ride add with incomplete data', () => {
 		moxios.stubRequest(API.ADD_AND_RETRIEVE_RIDES_URL, {
 			status: 400
 		});
@@ -45,6 +45,18 @@ describe('Rides Actions', () => {
 		const expectedActions = [{ payload: {}, type: 'RIDE_ERRORS' }];
 
 		store.dispatch(ridesAction({})).then(() => {
+			expect(store.getActions()).toEqual(expectedActions);
+		});
+	});
+
+	it('delete ride data', () => {
+		moxios.stubRequest(`${API.ADD_AND_RETRIEVE_RIDES_URL}/RD123/`, {
+			status: 200
+		});
+
+		const expectedActions = [{ payload: {}, type: 'RIDE_ERRORS' }];
+
+		store.dispatch(ridesAction({}, 'DELETE', `${API.ADD_AND_RETRIEVE_RIDES_URL}/RD123/`)).then(() => {
 			expect(store.getActions()).toEqual(expectedActions);
 		});
 	});
