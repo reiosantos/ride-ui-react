@@ -5,7 +5,7 @@ import RideRowCategory from './rideCategory';
 import RideRow from './rideRow';
 
 const RideTableBodyPassenger = ({
-	rows, page, rowsPerPage, ridesOffered, classes
+	rows, page, rowsPerPage, ridesOffered, classes, onClickSend
 }) => (
 	<TableBody>
 		{rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map(row => (
@@ -18,6 +18,7 @@ const RideTableBodyPassenger = ({
 								ridesOffered={ridesOffered}
 								row={row}
 								classes={classes}
+								onClickSend={onClickSend}
 							/>
 						)
 				}
@@ -31,6 +32,7 @@ RideTableBodyPassenger.propTypes = {
 	page: PropTypes.number.isRequired,
 	rowsPerPage: PropTypes.number.isRequired,
 	ridesOffered: PropTypes.bool.isRequired,
+	onClickSend: PropTypes.func.isRequired,
 	rows: PropTypes.arrayOf(PropTypes.shape()).isRequired
 };
 

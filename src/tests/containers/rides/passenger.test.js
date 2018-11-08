@@ -78,6 +78,7 @@ describe('Passenger Container', () => {
 		wrapper.setProps({});
 		wrapper.instance().handleChangePage({}, 4);
 		wrapper.instance().handleChangeRowsPerPage({ target: { value: 3 } });
+		wrapper.instance().onClickSend('RID342')({ target: { value: 3 } });
 	});
 
 	it('should mount ViewRidesOfferedTab without crashing', () => {

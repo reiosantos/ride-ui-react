@@ -1,4 +1,6 @@
-import { capitalizeWord, formatDate, sleep } from '../../utils';
+import {
+	capitalizeWord, formatDate, functionPlaceholder, sleep 
+} from '../../utils';
 import {
 	validateAmount,
 	validateDateTime,
@@ -24,6 +26,7 @@ describe('Util functions', () => {
 		expect(formatDate('2018-12-22')).toBeDefined();
 		expect(capitalizeWord('santos')).toEqual('Santos');
 		expect(sleep(1)).resolves.toHaveReturned().then();
+		functionPlaceholder();
 	});
 
 	it('should test date and time validations', () => {
