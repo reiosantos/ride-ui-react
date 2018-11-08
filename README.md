@@ -13,6 +13,8 @@ ore and earning more.
 
 [![Build Status](https://travis-ci.org/reiosantos/ride-ui-react.svg?branch=develop)](https://travis-ci.org/reiosantos/ride-ui-react) [![Coverage Status](https://coveralls.io/repos/github/reiosantos/ride-ui-react/badge.svg?branch=develop)](https://coveralls.io/github/reiosantos/ride-ui-react?branch=develop)
 
+### [Heroku Link](https://ride-ui-react.herokuapp.com/)
+
 ***Features***
 
  * Users (Driver and passenger) can fetch all ride offers
@@ -31,112 +33,64 @@ This describes things needed to install the software.
 
 ```bash
 - git : to update and clone the repository
-- python3: The base language used to develop the api
-- pip: a python package used to install project requirements
+- nodejs and npm : The are needed for development purposes
 ```
 
-### Installing
+### Installing for testing and production
 
 ```bash
-Type: "git clone https://github.com/reiosantos/ride-my-way.git" in your terminal.
+Type: "git clone https://github.com/reiosantos/ride-ui.git" in your terminal.
 ```
-The UI folder houses the user interface. To access the user interface, open the login.html
-file inside the UI/templates folder
+To access the user interface, open the index.html file inside folder
 
+### Planning for Development
 
-The api folder contains the system backend services.
-
-- To install the requirements. run:
+- To install the requirements needed for development. run:
 
 ```bash
-pip3 install -r requirements
+npm install
 ```
 
-The app can then be run with the following commands.
+To build the app after modifications you can run .
 
 ```bash
-cd api
-
-python run.py
+npm run build
 ```
 
-- Now you can access the system api via URLs:
+The UI can be put under the apache web root and accessed from there.
 
-* To create an account, method[POST]
+If you put the build folder inside the web root dir. Then,
+
+- You can access the system api via this URL:
+
 ```http
-http://localhost:5000/api/v1/auth/signup/
+http://localhost/build/
 ```
 
-* To login to an account, method[POST]
-```http
-http://localhost:5000/api/v1/auth/login/
-```
-* To create an account, method[POST]
-```http
-http://localhost:5000/api/v1/auth/signup/
-```
+#### Signup page:
 
-* To access all rides, method[GET]
-```http
-http://localhost:5000/apis/v1/rides/
-```
+- This enables a user to create an account as either a driver or a passenger.
 
-* To access a particular ride. ie ride number 5, method[GET]
-```http
-http://localhost:5000/apis/v1/rides/5/
-```
+![image](https://drive.google.com/uc?export=view&id=1jNe4jpUgemN6MFIadBcCZG4py0pX0Rta)
 
-* To delete a particular ride for-example 4, method[DELETE]
-```http
-http://localhost:5000/apis/v1/rides/4/
-```
+#### Login Page
 
-* To update a particular ride, method[PUT]
-```http
-http://localhost:5000/api/v1/rides/
-```
+![image](https://drive.google.com/uc?export=view&id=1Je0qSYtivg3GWW9DZ7FAuLWSPersqIDg)
 
-* To insert a new ride, method[POST]
-```http
-http://localhost:5000/api/v1/rides/
-```
 
-* To send a request to join a particular ride for-example 4, method[POST]
-```http
-http://localhost:5000/apis/v1/rides/4/request/
-```
+#### Driver Page
 
-* To view requests for a particular ride for-example 4, method[GET]
-```http
-http://localhost:5000/apis/v1/rides/4/request/
-```
+![image](https://drive.google.com/uc?export=view&id=1v2YkEIyKIuYjyAW0RGJAaW3epP5ezwUr)
 
-* To update a request for a ride for-example 4, 
-and request number 5 hod[PUT]
-```http
-http://localhost:5000/apis/v1/rides/4/request/5/
-```
+#### Passenger's Page
 
-* To delete a request of a particular ride 
-for-example 4, and ride 5 method[DELETE]
-```http
-http://localhost:5000/apis/v1/rides/4/request/5/
-```
 
-## Running the tests
-
-- To run the tests, make sure you are working under api/, Then run the following commands
-
-```bash
-pytest
-```
+![image](https://drive.google.com/uc?export=view&id=1o7o4WeHsJ3T9nI-AkA-6loVmniaF2OFT)
 
 ## Built With
 
-* [Flask](http://flask.pocoo.org/docs/1.0/) - The web framework used
-* [Python](https://www.python.org/) - Framework language
-* HTML
-* CSS
+* Material-UI
+* React/Redux
 
 ## Authors
 
@@ -146,4 +100,4 @@ pytest
 
 * Andela Software Development Community
 * Inspiration
-* Bootcamp 9 team-mates
+* TTL: Kanyesigye Edgar
