@@ -5,32 +5,25 @@ import Table from '@material-ui/core/Table';
 import TableFooter from '@material-ui/core/TableFooter';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
-import allRidesTableStyles from '../../static/styles/allRidesTableStyles';
-import TablePaginationViewActions from './pagination/tablePaginationViewActions';
-import RideTableBody from './tableBody';
-import TableHeader from './tableHeader';
-import TableHeaderText from './tableHeaderText';
+import TablePaginationViewActions from '../../pagination/tablePaginationViewActions';
+import RideTableBodyPassenger from './tableBodyPassenger';
+import TableHeaderPassenger from './tableHeaderPassenger';
+import allRidesTableStyles from '../../../static/styles/allRidesTableStyles';
 
-const AllRidesTable = (
+const AllRidesTablePassenger = (
 	{
-		classes, page, rowsPerPage, rows, handleChangePage, onClickDelete,
-		handleChangeRowsPerPage, ridesGiven, ridesTaken, totalRequests, isViewRequest
+		classes, page, rowsPerPage, rows, handleChangePage,
+		handleChangeRowsPerPage, ridesOffered
 	}
 ) => (
 	<div className={classes.tableWrapper}>
-		<TableHeaderText
-			ridesGiven={ridesGiven}
-			ridesTaken={ridesTaken}
-			totalRequests={totalRequests}
-			classes={classes}
-		/>
 		<Table className={classes.table}>
-			<TableHeader isViewRequest={isViewRequest} />
-			<RideTableBody
+			<TableHeaderPassenger isViewRequest={ridesOffered} />
+
+			<RideTableBodyPassenger
 				classes={classes}
-				isViewRequest={isViewRequest}
+				ridesOffered={ridesOffered}
 				rows={rows}
-				onClickDelete={onClickDelete}
 				rowsPerPage={rowsPerPage}
 				page={page}
 			/>
@@ -51,26 +44,20 @@ const AllRidesTable = (
 	</div>
 );
 
-AllRidesTable.propTypes = {
+AllRidesTablePassenger.propTypes = {
 	classes: PropTypes.shape().isRequired,
 	page: PropTypes.number.isRequired,
 	rowsPerPage: PropTypes.number.isRequired,
-	ridesGiven: PropTypes.number.isRequired,
-	ridesTaken: PropTypes.number.isRequired,
-	totalRequests: PropTypes.number,
-	isViewRequest: PropTypes.bool,
 	rows: PropTypes.arrayOf(PropTypes.shape()).isRequired,
 	handleChangePage: PropTypes.func.isRequired,
 	handleChangeRowsPerPage: PropTypes.func.isRequired,
-	onClickDelete: PropTypes.func.isRequired
-
+	ridesOffered: PropTypes.bool
 };
 
-AllRidesTable.defaultProps = {
-	totalRequests: null,
-	isViewRequest: false
+AllRidesTablePassenger.defaultProps = {
+	ridesOffered: false
 };
 
-export { AllRidesTable as AllRidesTableTest };
+export { AllRidesTablePassenger as AllRidesTabletableTest };
 
-export default withStyles(allRidesTableStyles)(AllRidesTable);
+export default withStyles(allRidesTableStyles)(AllRidesTablePassenger);

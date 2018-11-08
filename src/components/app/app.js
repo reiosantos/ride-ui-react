@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { USER_TYPE_DRIVER } from '../../constants';
 import Driver from '../../containers/driver';
+import Passenger from '../../containers/passenger';
 import NavBar from '../navBar';
 
 class App extends React.Component {
@@ -26,7 +27,7 @@ class App extends React.Component {
 				{
 					user && user.userType === USER_TYPE_DRIVER
 						? <Driver />
-						: 'Passenger'
+						: <Passenger />
 				}
 			</Fragment>
 		);

@@ -1,4 +1,4 @@
-import { formatDate } from '../index';
+import { formatDate } from '..';
 
 const deepFlatten = (array) => {
 	let result = [];
@@ -21,12 +21,21 @@ const renameAttributes = ride => ({
 	tripFrom: ride.trip_from,
 	postDate: formatDate(ride.post_date),
 	rideId: ride.ride_id,
-	requestId: ride.request_id
+	requestId: ride.request_id,
+	passengerId: ride.passenger_id,
+	requestStatus: ride.request_status
 });
 
 const categorizeRides = (data) => {
 	const rides = {};
-	const summary = { ridesTaken: 0, ridesGiven: data.length };
+	let count = 0;
+
+	data.forEach((row) => {
+		if (!row.category) {
+			count += 1;
+		}
+	});
+	const summary = { ridesTaken: 0, ridesGiven: count };
 
 	data.forEach((ride) => {
 		const dateKey = formatDate(ride.post_date);
@@ -44,7 +53,18 @@ const categorizeRides = (data) => {
 	return [deepFlatten(Object.keys(rides).map(key => rides[key])), summary];
 };
 
+const sortRides = (a, b) => {
+	if (a.postDate > b.postDate) {
+		return -1;
+	}
+	if (a.postDate < b.postDate) {
+		return 1;
+	}
+	return 0;
+};
+
 export {
 	renameAttributes,
-	categorizeRides
+	categorizeRides,
+	sortRides
 };

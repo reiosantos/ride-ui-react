@@ -1,5 +1,5 @@
 import ACTION_TYPE from '../../actions';
-import { categorizeRides, renameAttributes } from '../../utils/reducerUtils';
+import { categorizeRides, renameAttributes, sortRides } from '../../utils/reducerUtils';
 
 const initialState = {
 	error: '',
@@ -30,9 +30,9 @@ const ridesReducer = (state = initialState, action) => {
 	const data = {
 		error,
 		success,
-		rides: dataArray[0],
-		rideSelections: rideList.map(ride => renameAttributes(ride)),
-		requests: requestList.map(ride => renameAttributes(ride)),
+		rides: dataArray[0].sort(sortRides),
+		rideSelections: rideList.map(ride => renameAttributes(ride)).sort(sortRides),
+		requests: requestList.map(ride => renameAttributes(ride)).sort(sortRides),
 		summary: { ...state.summary, ...dataArray[1], totalRequests: requestList.length }
 	};
 

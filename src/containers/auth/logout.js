@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Redirect, withRouter } from 'react-router-dom';
-import { Authenticate } from '../../components/privateRoute/index';
+import { Authenticate } from '../../components/privateRoute';
 
 class Logout extends React.Component {
 

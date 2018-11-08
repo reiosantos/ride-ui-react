@@ -4,9 +4,9 @@ import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper/Paper';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography/Typography';
-import driverPageStyles from '../../static/styles/driverPageStyles';
 import AddRideForm from '../rides/addRideForm';
-import TabbedPage from '../tabs/tabbedPage';
+import TabbedPage from './tabs/tabbedPage';
+import driverPageStyles from '../../static/styles/driverPageStyles';
 
 const DriverPage = (
 	{

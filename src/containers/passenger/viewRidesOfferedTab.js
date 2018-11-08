@@ -2,22 +2,18 @@ import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { ridesAction } from '../../actions/rides';
+import AllRidesTablePassenger from '../../components/passenger/table/allRidesTablePassenger';
 import CircularIntegration from '../../components/progress';
-import AllRidesTable from '../../components/driver/table/allRidesTable';
-import { API } from '../../constants';
-import { formatUrl } from '../../utils';
 
-class ViewAllRidesTab extends React.Component {
+class ViewRidesOfferedTab extends React.Component {
 
 	constructor(props) {
 		super(props);
-		const { rows, ridesGiven = 0, ridesTaken = 0 } = props;
+		const { rows } = props;
 		this.state = {
 			rows,
 			page: 0,
 			rowsPerPage: 5,
-			ridesGiven,
-			ridesTaken,
 			loader: {
 				success: false,
 				loading: true
@@ -31,9 +27,9 @@ class ViewAllRidesTab extends React.Component {
 	}
 
 	componentWillReceiveProps(nextProps, nextState) {
-		const { rows, ridesGiven, ridesTaken } = nextProps;
+		const { rows } = nextProps;
 		this.setState({
-			rows, ridesGiven, ridesTaken, loader: { loading: false, success: true } 
+			rows, loader: { loading: false, success: true }
 		});
 	}
 
@@ -45,42 +41,31 @@ class ViewAllRidesTab extends React.Component {
 		this.setState({ rowsPerPage: event.target.value });
 	};
 
-	onClickDelete = value => (event) => {
-		event.preventDefault();
-		this.setState({ loader: { loading: true, success: false } });
-		const { dispatch } = this.props;
-		dispatch(ridesAction({}, 'DELETE', formatUrl(API.DELETE_RIDE_URL, [value])));
-	};
-
 	render() {
 		const {
-			rows, rowsPerPage, page, loader, ridesGiven, ridesTaken
+			rows, rowsPerPage, page, loader
 		} = this.state;
 
 		return (
 			<Fragment>
 				<CircularIntegration {...loader} />
 
-				<AllRidesTable
+				<AllRidesTablePassenger
 					page={page}
 					handleChangePage={this.handleChangePage}
 					handleChangeRowsPerPage={this.handleChangeRowsPerPage}
 					rows={rows}
+					ridesOffered
 					rowsPerPage={rowsPerPage}
-					ridesTaken={ridesTaken}
-					ridesGiven={ridesGiven}
-					onClickDelete={this.onClickDelete}
 				/>
 			</Fragment>
 		);
 	}
 }
 
-ViewAllRidesTab.propTypes = {
+ViewRidesOfferedTab.propTypes = {
 	rows: PropTypes.arrayOf(PropTypes.shape()).isRequired,
-	dispatch: PropTypes.func.isRequired,
-	ridesTaken: PropTypes.number.isRequired,
-	ridesGiven: PropTypes.number.isRequired
+	dispatch: PropTypes.func.isRequired
 
 };
 
@@ -89,6 +74,6 @@ const mapStateToProps = state => (
 		rows: state.ridesReducer.rides,
 		...state.ridesReducer.summary
 	});
-export { ViewAllRidesTab as ViewAllRidesTabTest };
+export { ViewRidesOfferedTab as ViewRidesOfferedTabTest };
 
-export default connect(mapStateToProps)(ViewAllRidesTab);
+export default connect(mapStateToProps)(ViewRidesOfferedTab);

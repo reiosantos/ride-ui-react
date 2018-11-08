@@ -2,18 +2,18 @@ import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { rideRequestAction } from '../../actions/rides';
+import AllRidesTablePassenger from '../../components/passenger/table/allRidesTablePassenger';
 import CircularIntegration from '../../components/progress';
 import RideSelectForm from '../../components/rides/rideSelectForm';
-import AllRidesTable from '../../components/driver/table/allRidesTable';
 import { API } from '../../constants';
 import { formatUrl } from '../../utils';
 
-class ViewRequestsTab extends React.Component {
+class ViewRideTakenTab extends React.Component {
 
 	constructor(props) {
 		super(props);
 		const {
-			rows, rides, totalRequests = 0, ridesTaken = 0, ridesGiven = 0
+			rows, rides
 		} = props;
 		this.state = {
 			rows,
@@ -21,9 +21,6 @@ class ViewRequestsTab extends React.Component {
 			page: 0,
 			selectValue: '',
 			rowsPerPage: 5,
-			totalRequests,
-			ridesTaken,
-			ridesGiven,
 			loader: {
 				success: false,
 				loading: false
@@ -33,10 +30,10 @@ class ViewRequestsTab extends React.Component {
 
 	componentWillReceiveProps(nextProps, nextContext) {
 		const {
-			rows, ridesGiven, ridesTaken, totalRequests, rides
+			rows, rides
 		} = nextProps;
 		this.setState({
-			rows, ridesGiven, ridesTaken, totalRequests, rides, loader: { loading: false, success: true }
+			rows, rides, loader: { loading: false, success: true }
 		});
 	}
 
@@ -45,7 +42,7 @@ class ViewRequestsTab extends React.Component {
 		const { value } = event.target;
 		this.setState({ selectValue: value, loader: { loading: true, success: false } });
 		this.forceUpdate();
-		dispatch(rideRequestAction({}, formatUrl(API.POST_FETCH_RIDE_REQUESTS_URL, [value])));
+		dispatch(rideRequestAction({}, formatUrl(API.POST_FETCH_RIDE_REQUESTS_URL, [value]), 'get', value));
 	};
 
 	handleChangePage = (event, page) => {
@@ -73,7 +70,7 @@ class ViewRequestsTab extends React.Component {
 				<CircularIntegration {...loader} />
 
 				<RideSelectForm rows={rides} selectValue={selectValue} onSelectRide={this.onSelectRide} />
-				<AllRidesTable
+				<AllRidesTablePassenger
 					page={page}
 					handleChangePage={this.handleChangePage}
 					handleChangeRowsPerPage={this.handleChangeRowsPerPage}
@@ -90,7 +87,7 @@ class ViewRequestsTab extends React.Component {
 	}
 }
 
-ViewRequestsTab.propTypes = {
+ViewRideTakenTab.propTypes = {
 	rows: PropTypes.arrayOf(PropTypes.shape()).isRequired,
 	rides: PropTypes.arrayOf(PropTypes.shape()).isRequired,
 	dispatch: PropTypes.func.isRequired,
@@ -105,6 +102,6 @@ const mapStateToProps = state => (
 		rides: state.ridesReducer.rideSelections,
 		...state.ridesReducer.summary
 	});
-export { ViewRequestsTab as ViewRequestsTabTest };
+export { ViewRideTakenTab as ViewRideTakenTabTest };
 
-export default connect(mapStateToProps)(ViewRequestsTab);
+export default connect(mapStateToProps)(ViewRideTakenTab);

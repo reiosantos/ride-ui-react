@@ -9,8 +9,8 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Hidden from '@material-ui/core/Hidden';
-import aboutStyles from '../../static/styles/aboutStyles';
 import NavBar from '../navBar';
+import aboutStyles from '../../static/styles/aboutStyles';
 
 const featuredPosts = [
 	{

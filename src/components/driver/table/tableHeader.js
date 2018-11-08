@@ -1,7 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import TableHead from '@material-ui/core/TableHead/TableHead';
 import TableRow from '@material-ui/core/TableRow';
-import PropTypes from 'prop-types';
 import CustomTableCell from './customTableCell';
 
 const TableHeader = ({ isViewRequest }) => (

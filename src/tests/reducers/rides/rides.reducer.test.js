@@ -2,7 +2,7 @@
 import { EnhancerOptions as undefined } from 'redux-devtools-extension';
 import ACTION_TYPE from '../../../actions';
 import ridesReducer from '../../../reducers/rides';
-import { categorizeRides } from '../../../utils/reducerUtils';
+import { categorizeRides, sortRides } from '../../../utils/reducerUtils';
 
 describe('Rides reduces', () => {
 
@@ -60,13 +60,16 @@ describe('Rides reduces', () => {
 		}], { ridesGiven: 1, ridesTaken: 0 }]);
 
 		expect(categorizeRides([
-			{ status: 'taken', post_date: '2015-12-12' },
+			{ status: 'taken', post_date: '2015-12-12', category: 'wer' },
 			{ status: 'taken', post_date: '2015-12-12' }
 		])).toEqual([[{ category: 'Sat, Dec 12th 2015' }, {
-			departureTime: 'Invalid date', id: 'undefined2015-12-12undefined', postDate: 'Sat, Dec 12th 2015', post_date: '2015-12-12', requestId: undefined, rideId: undefined, status: 'taken', tripFrom: undefined 
+			category: 'wer', departureTime: 'Invalid date', id: 'undefined2015-12-12undefined', passengerId: undefined, postDate: 'Sat, Dec 12th 2015', post_date: '2015-12-12', requestId: undefined, requestStatus: undefined, rideId: undefined, status: 'taken', tripFrom: undefined 
 		}, {
-			departureTime: 'Invalid date', id: 'undefined2015-12-12undefined', postDate: 'Sat, Dec 12th 2015', post_date: '2015-12-12', requestId: undefined, rideId: undefined, status: 'taken', tripFrom: undefined
-		}], { ridesGiven: 2, ridesTaken: 2 }]);
+			departureTime: 'Invalid date', id: 'undefined2015-12-12undefined', passengerId: undefined, postDate: 'Sat, Dec 12th 2015', post_date: '2015-12-12', requestId: undefined, requestStatus: undefined, rideId: undefined, status: 'taken', tripFrom: undefined
+		}], { ridesGiven: 1, ridesTaken: 2 }]);
+
+		sortRides({ postDate: '123' }, { postDate: '1234' });
+		sortRides({ postDate: 321 }, { postDate: 4 });
 
 	});
 });
