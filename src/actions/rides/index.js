@@ -67,13 +67,15 @@ export const rideRequestAction = (requestData, URL, method = 'get', rideId) => (
 
 	const instance = axios.create({ headers: { 'Content-Type': 'application/json' } });
 
-	const inst = method.toLowerCase() === 'get' ? instance.get(URL, requestData) : instance.put(URL, requestData);
+	let inst = method.toLowerCase() === 'get' ? instance.get(URL, requestData) : instance.put(URL, requestData);
+	inst = method.toLowerCase() === 'post' ? instance.post(URL, requestData) : inst;
+
 	return inst
 		.then(response => response.data)
 		.then((response) => {
 
 			if (method !== 'get') {
-				dispatch(rideRequestAction({}, formatUrl(API.POST_FETCH_RIDE_REQUESTS_URL, [rideId])));
+				dispatch(rideRequestAction({}, formatUrl(API.POST_FETCH_RIDE_REQUESTS_URL, [rideId]), 'get'));
 			}
 			dispatch(viewAllRequestsActionCreator(response.data));
 			dispatch(rideErrorsActionCreator(response || {}));

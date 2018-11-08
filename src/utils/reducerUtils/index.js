@@ -21,6 +21,7 @@ const renameAttributes = ride => ({
 	tripFrom: ride.trip_from,
 	postDate: formatDate(ride.post_date),
 	rideId: ride.ride_id,
+	cost: ride.trip_cost,
 	requestId: ride.request_id,
 	passengerId: ride.passenger_id,
 	requestStatus: ride.request_status

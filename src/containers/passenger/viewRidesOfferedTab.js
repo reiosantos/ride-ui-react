@@ -1,9 +1,11 @@
 import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { ridesAction } from '../../actions/rides';
+import { rideRequestAction, ridesAction } from '../../actions/rides';
 import AllRidesTablePassenger from '../../components/passenger/table/allRidesTablePassenger';
 import CircularIntegration from '../../components/progress';
+import { API } from '../../constants';
+import { formatUrl } from '../../utils';
 
 class ViewRidesOfferedTab extends React.Component {
 
@@ -41,6 +43,12 @@ class ViewRidesOfferedTab extends React.Component {
 		this.setState({ rowsPerPage: event.target.value });
 	};
 
+	onClickSend = rideId => (event) => {
+		const { dispatch } = this.props;
+		this.setState({ loader: { loading: true, success: false } });
+		dispatch(rideRequestAction({}, formatUrl(API.POST_FETCH_RIDE_REQUESTS_URL, [rideId]), 'POST', rideId));
+	};
+
 	render() {
 		const {
 			rows, rowsPerPage, page, loader
@@ -52,6 +60,7 @@ class ViewRidesOfferedTab extends React.Component {
 
 				<AllRidesTablePassenger
 					page={page}
+					onClickSend={this.onClickSend}
 					handleChangePage={this.handleChangePage}
 					handleChangeRowsPerPage={this.handleChangeRowsPerPage}
 					rows={rows}

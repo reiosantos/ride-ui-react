@@ -35,3 +35,5 @@ export const formatUrl = (source, params) => {
 	});
 	return url;
 };
+
+export const functionPlaceholder = () => {};

@@ -14,15 +14,14 @@ const TableHeaderPassenger = ({ isViewRequest }) => (
 						<CustomTableCell>Destination</CustomTableCell>
 						<CustomTableCell>Amount(Ugx)</CustomTableCell>
 						<CustomTableCell>Departure</CustomTableCell>
-						<CustomTableCell />
+						<CustomTableCell>Action</CustomTableCell>
 					</TableRow>
 				) : (
 					<TableRow>
 						<CustomTableCell>Pick Up</CustomTableCell>
 						<CustomTableCell>Destination</CustomTableCell>
-						<CustomTableCell>Cost</CustomTableCell>
+						<CustomTableCell>Cost(Ugx)</CustomTableCell>
 						<CustomTableCell>Departure</CustomTableCell>
-						<CustomTableCell />
 					</TableRow>
 				)
 

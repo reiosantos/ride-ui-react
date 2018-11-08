@@ -119,4 +119,19 @@ describe('Rides Actions', () => {
 		});
 	});
 
+	it('delete ride request data success', () => {
+		moxios.stubRequest(`${formatUrl(API.POST_FETCH_RIDE_REQUESTS_URL, ['R2134'])}`, {
+			status: 200,
+			response: {
+				data: {}
+			}
+		});
+
+		const expectedActions = [{ payload: { requests: {} }, type: 'VIEW_ALL_REQUESTS' }, { payload: { data: {} }, type: 'RIDE_ERRORS' }];
+
+		store.dispatch(rideRequestAction({}, `${formatUrl(API.POST_FETCH_RIDE_REQUESTS_URL, ['R2134'])}`, 'post')).then(() => {
+			expect(store.getActions()).toEqual(expectedActions);
+		});
+	});
+
 });
