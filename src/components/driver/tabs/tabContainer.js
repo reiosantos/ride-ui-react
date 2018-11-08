@@ -1,6 +1,6 @@
-import Typography from '@material-ui/core/Typography';
-import PropTypes from 'prop-types';
 import React from 'react';
+import PropTypes from 'prop-types';
+import Typography from '@material-ui/core/Typography';
 
 const TabContainer = ({ children, dir }) => (
 	<Typography component="div" dir={dir} style={{ padding: 8 * 3 }}>

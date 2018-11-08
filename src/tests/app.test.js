@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 import { MemoryRouter } from 'react-router-dom';
 import configureStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
-import { AppTest } from '../components/app/app';
+import App, { AppTest } from '../components/app/app';
 import NavBar from '../components/navBar';
 import { USER_TYPE_DRIVER } from '../constants';
 import '../index';
@@ -16,7 +16,20 @@ describe('App component', () => {
 	beforeEach(() => {
 		store = mockStore({
 			authReducer: {
-				user: {}
+				user: {
+					userType: USER_TYPE_DRIVER
+				}
+			},
+			ridesReducer: {
+				newRide: {},
+				rides: [{ category: 'we' }, { rideId: 'f45' }],
+				requests: [{ rideId: 'f45' }],
+				rideSelections: [{ rideId: 'f45' }],
+				summary: {
+					ridesGiven: 0,
+					ridesTaken: 0,
+					totalRequests: 0
+				}
 			}
 		});
 	});
@@ -40,24 +53,13 @@ describe('App component', () => {
 	});
 
 	it('renders APP without crashing', () => {
-		store = mockStore({
-			authReducer: {
-				user: {
-					userType: USER_TYPE_DRIVER
-				}
-			},
-			ridesReducer: {
-				rides: [],
-				summary: {}
-			}
-		});
-		// expect(mount(
-		// 	<MemoryRouter>
-		// 		<Provider store={store}>
-		// 			<App classes={{}} />
-		// 		</Provider>
-		// 	</MemoryRouter>
-		// )).toHaveLength(1);
+		expect(mount(
+			<MemoryRouter>
+				<Provider store={store}>
+					<App classes={{}} />
+				</Provider>
+			</MemoryRouter>
+		)).toHaveLength(1);
 	});
 
 });

@@ -11,7 +11,7 @@ const allRidesTableStyles = theme => ({
 		overflowX: 'auto'
 	},
 	category: {
-		backgroundColor: theme.palette.grey[100]
+		backgroundColor: theme.palette.grey[300]
 	},
 	taken: {
 		color: theme.palette.error.main,

@@ -7,10 +7,10 @@ import Tab from '@material-ui/core/Tab';
 import Tabs from '@material-ui/core/Tabs';
 import FolderOpen from '@material-ui/icons/FolderOpen';
 import List from '@material-ui/icons/List';
-import ViewAllRidesTab from '../../containers/driver/viewAllRidesTab';
-import ViewRequestsTab from '../../containers/driver/viewRequestsTab';
-import tabbedPageStyles from '../../static/styles/tabbedPageStyles';
+import ViewAllRidesTab from '../../../containers/driver/viewAllRidesTab';
+import ViewRequestsTab from '../../../containers/driver/viewRequestsTab';
 import TabContainer from './tabContainer';
+import tabbedPageStyles from '../../../static/styles/tabbedPageStyles';
 
 class TabbedPage extends React.Component {
 	state = {

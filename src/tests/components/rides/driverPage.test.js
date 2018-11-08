@@ -6,10 +6,10 @@ import thunk from 'redux-thunk';
 import { mount, shallow } from 'enzyme';
 import DriverPage from '../../../components/driver/driverPage';
 import RideSelectForm from '../../../components/rides/rideSelectForm';
-import { AllRidesTableTest } from '../../../components/table/allRidesTable';
-import { TablePaginationViewTest } from '../../../components/table/pagination/tablePaginationView';
+import { AllRidesTableTest } from '../../../components/driver/table/allRidesTable';
+import { TablePaginationViewTest } from '../../../components/pagination/tablePaginationView';
 import TablePaginationViewActions
-	from '../../../components/table/pagination/tablePaginationViewActions';
+	from '../../../components/pagination/tablePaginationViewActions';
 import ViewRequestsTab, { ViewRequestsTabTest } from '../../../containers/driver/viewRequestsTab';
 
 const mockStore = configureStore([thunk]);
