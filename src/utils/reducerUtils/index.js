@@ -21,9 +21,12 @@ const renameAttributes = ride => ({
 	tripFrom: ride.trip_from,
 	postDate: formatDate(ride.post_date),
 	rideId: ride.ride_id,
-	cost: ride.trip_cost,
+	cost: ride.trip_cost || ride.cost,
+	requestDate: formatDate(ride.request_date),
 	requestId: ride.request_id,
 	passengerId: ride.passenger_id,
+	passengerName: ride.passenger_name,
+	passengerContact: ride.passenger_contact,
 	requestStatus: ride.request_status
 });
 
@@ -43,7 +46,7 @@ const categorizeRides = (data) => {
 
 		if (!Object.prototype.hasOwnProperty.call(rides, dateKey)) {
 			rides[dateKey] = [];
-			rides[dateKey].push({ category: dateKey });
+			rides[dateKey].push({ category: dateKey, post_date: ride.post_date });
 		}
 		if (ride.status === 'taken') {
 			summary.ridesTaken += 1;
@@ -55,10 +58,10 @@ const categorizeRides = (data) => {
 };
 
 const sortRides = (a, b) => {
-	if (a.postDate > b.postDate) {
+	if (a.post_date > b.post_date) {
 		return -1;
 	}
-	if (a.postDate < b.postDate) {
+	if (a.post_date < b.post_date) {
 		return 1;
 	}
 	return 0;
