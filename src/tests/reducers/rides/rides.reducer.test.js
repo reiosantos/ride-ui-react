@@ -37,12 +37,23 @@ describe('Rides reduces', () => {
 		const expected = {
 			error: undefined,
 			requests: [{
-				departureTime: 'Invalid date', id: NaN, postDate: 'Invalid date', requestId: undefined, rideId: undefined, tripFrom: undefined 
+				cost: undefined,
+				departureTime: 'Invalid date',
+				id: NaN,
+				passengerContact: undefined,
+				passengerId: undefined,
+				passengerName: undefined,
+				postDate: 'Invalid date',
+				requestDate: 'Invalid date',
+				requestId: undefined,
+				requestStatus: undefined,
+				rideId: undefined,
+				tripFrom: undefined
 			}],
 			rideSelections: [],
 			rides: [],
 			success: undefined,
-			summary: { ridesGiven: 1, ridesTaken: 0, totalRequests: 1 } 
+			summary: { ridesGiven: 0, ridesTaken: 0, totalRequests: 1 } 
 		};
 
 		const actionView = {
@@ -55,17 +66,17 @@ describe('Rides reduces', () => {
 
 	it('should test exta reducer functions', () => {
 		expect(categorizeRides([])).toEqual([[], { ridesGiven: 0, ridesTaken: 0 }]);
-		expect(categorizeRides([{}])).toEqual([[{ category: 'Invalid date' }, {
-			departureTime: 'Invalid date', id: NaN, postDate: 'Invalid date', tripFrom: undefined 
+		expect(categorizeRides([{}])).toEqual([[{ category: 'Invalid date', post_date: undefined }, {
+			cost: undefined, departureTime: 'Invalid date', id: NaN, passengerContact: undefined, passengerId: undefined, passengerName: undefined, postDate: 'Invalid date', requestDate: 'Invalid date', requestId: undefined, requestStatus: undefined, rideId: undefined, tripFrom: undefined 
 		}], { ridesGiven: 1, ridesTaken: 0 }]);
 
 		expect(categorizeRides([
 			{ status: 'taken', post_date: '2015-12-12', category: 'wer' },
 			{ status: 'taken', post_date: '2015-12-12' }
-		])).toEqual([[{ category: 'Sat, Dec 12th 2015' }, {
-			category: 'wer', departureTime: 'Invalid date', id: 'undefined2015-12-12undefined', passengerId: undefined, postDate: 'Sat, Dec 12th 2015', post_date: '2015-12-12', requestId: undefined, requestStatus: undefined, rideId: undefined, status: 'taken', tripFrom: undefined 
+		])).toEqual([[{ category: 'Sat, Dec 12th 2015', post_date: '2015-12-12' }, {
+			category: 'wer', cost: undefined, departureTime: 'Invalid date', id: 'undefined2015-12-12undefined', passengerContact: undefined, passengerId: undefined, passengerName: undefined, postDate: 'Sat, Dec 12th 2015', post_date: '2015-12-12', requestDate: 'Invalid date', requestId: undefined, requestStatus: undefined, rideId: undefined, status: 'taken', tripFrom: undefined 
 		}, {
-			departureTime: 'Invalid date', id: 'undefined2015-12-12undefined', passengerId: undefined, postDate: 'Sat, Dec 12th 2015', post_date: '2015-12-12', requestId: undefined, requestStatus: undefined, rideId: undefined, status: 'taken', tripFrom: undefined
+			cost: undefined, departureTime: 'Invalid date', id: 'undefined2015-12-12undefined', passengerContact: undefined, passengerId: undefined, passengerName: undefined, postDate: 'Sat, Dec 12th 2015', post_date: '2015-12-12', requestDate: 'Invalid date', requestId: undefined, requestStatus: undefined, rideId: undefined, status: 'taken', tripFrom: undefined 
 		}], { ridesGiven: 1, ridesTaken: 2 }]);
 
 		sortRides({ postDate: '123' }, { postDate: '1234' });

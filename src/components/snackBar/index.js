@@ -31,6 +31,7 @@ const CustomizedSnackBar = (props) => {
 		<Snackbar
 			anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
 			open={open}
+			style={{ marginTop: '5em' }}
 			autoHideDuration={6000}
 			onClose={handleClose}
 		>

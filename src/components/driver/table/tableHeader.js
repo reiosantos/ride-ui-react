@@ -7,7 +7,7 @@ import CustomTableCell from './customTableCell';
 const TableHeader = ({ isViewRequest }) => (
 	<TableHead>
 		{
-			isViewRequest
+			!isViewRequest
 				? (
 					<TableRow>
 						<CustomTableCell>Pick Up</CustomTableCell>

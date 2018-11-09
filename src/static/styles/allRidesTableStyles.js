@@ -14,8 +14,7 @@ const allRidesTableStyles = theme => ({
 		backgroundColor: theme.palette.grey[300]
 	},
 	taken: {
-		color: theme.palette.error.main,
-		backgroundColor: theme.palette.grey[200],
+		color: theme.palette.primary.main,
 		fontWeight: 'bolder'
 	},
 	grid: {

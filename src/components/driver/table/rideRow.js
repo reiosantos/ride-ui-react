@@ -13,10 +13,10 @@ const RideRow = (
 	}
 ) => (
 	<TableRow key={row.id}>
-		<TableCell>{row.tripFrom}</TableCell>
-		<TableCell>{row.destination}</TableCell>
+		<TableCell>{isViewRequest ? row.passengerName : row.tripFrom}</TableCell>
+		<TableCell>{isViewRequest ? row.passengerContact : row.destination}</TableCell>
 		<TableCell>{row.cost}</TableCell>
-		<TableCell>{row.departureTime}</TableCell>
+		<TableCell>{isViewRequest ? row.requestDate : row.departureTime}</TableCell>
 		<TableCell className={row.status === 'taken' ? classes.taken : ''}>{row.status}</TableCell>
 		{
 			isViewRequest
