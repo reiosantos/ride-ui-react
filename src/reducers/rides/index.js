@@ -1,4 +1,5 @@
 import ACTION_TYPE from '../../actions';
+import { PROPERTY_USER, USER_TYPE_DRIVER } from '../../constants';
 import { categorizeRides, renameAttributes, sortRides } from '../../utils/reducerUtils';
 
 const initialState = {
@@ -14,16 +15,35 @@ const initialState = {
 	}
 };
 
+const filterDriverRides = (ride) => {
+	const user = JSON.parse(localStorage.getItem(PROPERTY_USER)) || {};
+
+	if (user.user_type === USER_TYPE_DRIVER) {
+		if (ride.driver_id === user.user_id) {
+			return ride;
+		}
+		return {};
+	} 
+	return ride;
+	
+};
+
 const ridesReducer = (state = initialState, action) => {
 
 	const {
 		error_message: error, success_message: success, rides, requests 
 	} = action.payload || {};
-	const rideList = rides || state.rides;
+	let rideList = rides || state.rides;
 	let requestList = requests || [];
 
 	requestList = Array.isArray(requestList) ? requestList
 		: [requestList];
+
+	rideList = rideList
+		.map(ride => filterDriverRides(ride))
+		.filter(ride => Object.keys(ride).length !== 0);
+
+	requestList = requestList.map(ride => filterDriverRides(ride));
 
 	const dataArray = categorizeRides(rideList);
 

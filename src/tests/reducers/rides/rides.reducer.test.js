@@ -53,7 +53,7 @@ describe('Rides reduces', () => {
 			rideSelections: [],
 			rides: [],
 			success: undefined,
-			summary: { ridesGiven: 1, ridesTaken: 0, totalRequests: 1 } 
+			summary: { ridesGiven: 0, ridesTaken: 0, totalRequests: 1 } 
 		};
 
 		const actionView = {

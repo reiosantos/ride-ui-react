@@ -1,5 +1,4 @@
 import moxios from 'moxios';
-import { EnhancerOptions as undefined } from 'redux-devtools-extension';
 import configureStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import { rideRequestAction, ridesAction } from '../../../actions/rides';
@@ -94,7 +93,13 @@ describe('Rides Actions', () => {
 
 	it('delete ride request data errors', () => {
 		moxios.stubRequest(`${formatUrl(API.POST_FETCH_RIDE_REQUESTS_URL, ['R2134', 'RT342'])}`, {
-			status: 400
+			status: 400,
+			response: {
+				error_message: 'The requested resourced RID',
+				data: {
+					error_message: 'The requested resourced RID'
+				}
+			}
 		});
 
 		const expectedActions = [{ payload: {}, type: 'RIDE_ERRORS' }];

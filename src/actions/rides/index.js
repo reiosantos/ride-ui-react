@@ -82,6 +82,9 @@ export const rideRequestAction = (requestData, URL, method = 'get', rideId) => (
 		})
 		.catch((error) => {
 			const { data } = error.response;
+			if (data.error_message && data.error_message.search('The requested resourced')) {
+				data.error_message = 'No request has been made on this ride';
+			}
 			dispatch(rideErrorsActionCreator(data || {}));
 		});
 };

@@ -9,21 +9,22 @@ const RideTableBody = ({
 }) => (
 	<TableBody>
 		{rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map(row => (
-			<Fragment key={row.category + row.id}>
-				{
-					row.category
-						? <RideRowCategory group={row.category} classes={classes} />
-						: (
-							<RideRow
-								isViewRequest={isViewRequest}
-								onClickDelete={onClickDelete}
-								row={row}
-								classes={classes}
-							/>
-						)
-				}
-			</Fragment>
-		))}
+			!row ? '' : (
+				<Fragment key={row.category + row.id}>
+					{
+						row.category
+							? <RideRowCategory group={row.category} classes={classes} />
+							: (
+								<RideRow
+									isViewRequest={isViewRequest}
+									onClickDelete={onClickDelete}
+									row={row}
+									classes={classes}
+								/>
+							)
+					}
+				</Fragment>
+			)))}
 	</TableBody>
 );
 
