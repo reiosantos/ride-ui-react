@@ -1,5 +1,6 @@
 import ACTION_TYPE from '../../actions';
-import { PROPERTY_USER, USER_TYPE_DRIVER } from '../../constants';
+import { USER_TYPE_DRIVER } from '../../constants';
+import { getCurrentUser } from '../../utils';
 import { categorizeRides, renameAttributes, sortRides } from '../../utils/reducerUtils';
 
 const initialState = {
@@ -16,7 +17,7 @@ const initialState = {
 };
 
 const filterDriverRides = (ride) => {
-	const user = JSON.parse(localStorage.getItem(PROPERTY_USER)) || {};
+	const user = getCurrentUser();
 
 	if (user.user_type === USER_TYPE_DRIVER) {
 		if (ride.driver_id === user.user_id) {

@@ -1,6 +1,6 @@
 import axios from 'axios';
 import moment from 'moment';
-import { AUTH_TOKEN } from '../constants';
+import { AUTH_TOKEN, PROPERTY_USER } from '../constants';
 
 export const formatDate = (dateStr) => {
 	moment.updateLocale('en', {
@@ -34,6 +34,15 @@ export const formatUrl = (source, params) => {
 		url = url.replace(new RegExp(`\\{${index}\\}`, 'g'), params[index]);
 	});
 	return url;
+};
+
+export const getCurrentUser = () => {
+	try {
+		const user = JSON.parse(localStorage.getItem(PROPERTY_USER));
+		return user || {};
+	} catch (e) {
+		return {};
+	}
 };
 
 export const functionPlaceholder = () => {};
