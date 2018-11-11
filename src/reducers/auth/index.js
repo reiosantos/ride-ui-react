@@ -1,9 +1,9 @@
 /* eslint-disable camelcase */
 import ACTION_TYPE from '../../actions';
-import { PROPERTY_USER } from '../../constants';
+import { getCurrentUser } from '../../utils';
 
 const initialState = {
-	user: JSON.parse(localStorage.getItem(PROPERTY_USER)) || {},
+	user: getCurrentUser(),
 	error: '',
 	success: ''
 };

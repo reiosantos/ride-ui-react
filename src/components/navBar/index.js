@@ -33,7 +33,7 @@ const NavBar = ({ classes, user }) => (
 				{/*</Button>*/}
 				<Button color="inherit" component={Link} to="/logout" replace>
 					<i className="fa fa-sign-out-alt " />
-					<span>{user.username}</span>
+					<span>{`Logout (${user.username})`}</span>
 				</Button>
 				<IconButton className={classes.menuButton} color="inherit" aria-label="Menu" />
 			</Toolbar>

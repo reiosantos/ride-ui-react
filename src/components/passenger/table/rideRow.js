@@ -4,7 +4,7 @@ import TableCell from '@material-ui/core/TableCell';
 import TableRow from '@material-ui/core/TableRow';
 import IconButton from '@material-ui/core/IconButton/IconButton';
 import SendIcon from '@material-ui/icons/Send';
-import { PROPERTY_USER } from '../../../constants';
+import { getCurrentUser } from '../../../utils';
 
 const RideRow = ({ row, ridesOffered, onClickSend }) => {
 	if (ridesOffered) {
@@ -22,7 +22,7 @@ const RideRow = ({ row, ridesOffered, onClickSend }) => {
 			</TableRow>
 		);
 	}
-	const user = JSON.parse(localStorage.getItem(PROPERTY_USER));
+	const user = getCurrentUser();
 
 	return (!(row.requestStatus === 'accepted' && row.passengerId === user.user_id) ? null : (
 		<TableRow key={row.id}>
